@@ -1,0 +1,20 @@
+[build]
+  publish = "dist"
+  command = "yarn export:web"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA routing: any unmatched path goes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
